@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";   // ✅ import footer
+import Footer from "./components/Footer";
 import Landing from "./pages/Landing";
 import Quiz from "./pages/Quiz";
 import About from "./pages/About";
@@ -8,11 +8,12 @@ import About from "./pages/About";
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-gray-50">
-        {/* Top navigation */}
+      {/* Root container: flex column to allow footer at the bottom */}
+      <div className="min-h-screen flex flex-col bg-neutral-light">
+        {/* Navigation bar */}
         <Navbar />
 
-        {/* Main content takes available space */}
+        {/* Main content */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Landing />} />
@@ -21,7 +22,7 @@ function App() {
           </Routes>
         </main>
 
-        {/* Always at bottom */}
+        {/* Footer */}
         <Footer />
       </div>
     </Router>

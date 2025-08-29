@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-aqua: #42C7E5;
+  --accent-lime: #A4D200;
+  --background-navy: #0C1A2C;
+  --secondary-yellow: #F6BD4A;
+  --neutral-light: #F4F4F4;
+  --text-dark: #1F1F1F;
+  --text-light: #E6E6E6;
+}
