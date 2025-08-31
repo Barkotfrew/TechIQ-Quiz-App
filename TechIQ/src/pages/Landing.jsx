@@ -12,6 +12,7 @@ const Hero = () => {
       {/* Description */}
       <p className="text-text-light mt-4 max-w-xl">
         Test your tech knowledge, learn new skills, and track your progress in a fun, interactive way.
+        For Ethiopian, By Ethiopian.
       </p>
 
       {/* Buttons */}
