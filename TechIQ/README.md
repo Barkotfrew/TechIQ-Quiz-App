@@ -3,6 +3,9 @@
 **TechIQ** is an interactive quiz application designed to enhance digital literacy and tech awareness among Ethiopian youth. It provides engaging quizzes on topics like computer fundamentals, digital safety, tech trends, and local tech leaders. The app makes self-paced learning fun, accessible, and relevant.  
 
 ---
+##  Deployment
+You can try the live app here:  
+👉 [TechIQ Quiz App](https://tech-iq-quiz-application.vercel.app/>)
 
 ## How It Works
 - Users select a quiz category and answer multiple-choice questions.
@@ -48,4 +51,11 @@ npm run dev
 ```
 5.Open http://localhost:5173 in your browser to use the app.
 
+## 🚀 Deployment
+You can try the live app here:  
+👉 [TechIQ Quiz App](https://tech-iq-quiz-application.vercel.app/>)
 
+## 👤 Author
+**Name:** Barkot Frew Messele  
+**GitHub:** [BarkotFrew](https://github.com/BarkotFrew)  
+**Email:** barkotfrew@gmail.com  
