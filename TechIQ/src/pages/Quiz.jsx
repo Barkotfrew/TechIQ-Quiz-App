@@ -10,6 +10,8 @@ function Quiz() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [categoryName, setCategoryName] = useState("");
+  
+  const [userAnswers, setUserAnswers] = useState([]);
 
   const categoryMap = {
     18: "Computers",
@@ -59,6 +61,16 @@ function Quiz() {
   };
 
   const handleAnswerClick = (selectedAnswer) => {
+    const currentQ = questions[currentQuestion];
+    setUserAnswers(prev => [
+      ...prev,
+      {
+        question: currentQ.question,
+        correct_answer: currentQ.correct_answer,
+        selected_answer: selectedAnswer,
+      }
+    ]);
+
     if (selectedAnswer === questions[currentQuestion].correct_answer) {
       setScore(score + 1);
     }
@@ -84,6 +96,7 @@ function Quiz() {
     setCurrentQuestion(0);
     setScore(0);
     setShowScore(false);
+     setUserAnswers([]);
     fetchQuestions();
   };
 
@@ -107,17 +120,20 @@ function Quiz() {
           <p className="text-gray-700 mb-6">{error}</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button
-              onClick={fetchQuestions}
-              className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition-colors"
-            >
-              Try Again
-            </button>
-            <Link
-              to="/quiz"
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg transition-colors text-center"
-            >
-              Choose Another Category
-            </Link>
+             onClick={fetchQuestions}
+          className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-2 px-6 rounded-lg transition-colors text-center"
+           style={{ minWidth: '140px' }}
+           >
+        Try Again
+        </button>
+     <Link
+        to="/quiz"
+        className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-2 px-6 rounded-lg transition-colors text-center"
+        style={{ minWidth: '140px' }}
+        >
+         Choose Another Category
+     </Link>
+
           </div>
         </div>
       </div>
@@ -185,20 +201,42 @@ function Quiz() {
             <div className="text-3xl font-bold text-green-600 mb-6">
               {Math.round((score / questions.length) * 100)}%
             </div>
+          
+           {/* ✅ NEW: Display summary of all answers */}
+            <div className="mt-6 text-left">
+              {userAnswers.map((ans, idx) => (
+                <div key={idx} className="mb-4 p-4 border rounded-lg bg-gray-50">
+                  <p className="font-medium">Q{idx + 1}: {ans.question}</p>
+                  <p>
+                    Your answer:{" "}
+                    <span className={ans.selected_answer === ans.correct_answer ? "text-green-600 font-semibold" : "text-red-600 font-semibold"}>
+                      {ans.selected_answer}
+                    </span>
+                  </p>
+                  {ans.selected_answer !== ans.correct_answer && (
+                    <p>Correct answer: <span className="text-green-600 font-semibold">{ans.correct_answer}</span></p>
+                  )}
+                  {/* Optional explanation */}
+                  {/* {ans.explanation && <p className="text-gray-700 italic">{ans.explanation}</p>} */}
+                </div>
+              ))}
+            </div>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
-                onClick={restartQuiz}
-                className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg transition-colors"
-              >
-                Try Again
-              </button>
-              <Link
-                to="/quiz"
-                className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg transition-colors text-center"
-              >
-                Choose Another Category
-              </Link>
+                 onClick={restartQuiz}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-2 px-6 rounded-lg transition-colors text-center"
+               style={{ minWidth: '140px' }}
+                >
+              Try Again
+           </button>
+            <Link
+               to="/quiz"
+            className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-2 px-6 rounded-lg transition-colors text-center"
+              style={{ minWidth: '140px' }}
+             >
+             Choose Another Category
+           </Link>
               <Link
                 to="/"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-colors text-center"
